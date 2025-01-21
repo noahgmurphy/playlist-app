@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import RenderTracklist from './tracklistRender';
 
 
-  const TrackList = () => {
+  const TrackList = (props) => {
 
-    const [songs, setSongs] = useState([
+    /*const [songs, setSongs] = useState([
         { 
           name: "I Fall Apart", 
           artist: "Post Malone",
@@ -19,11 +19,11 @@ import RenderTracklist from './tracklistRender';
           
         }
       ]);
+*/
 
     return(
         <div>
-            <p>Hello</p>
-            <RenderTracklist songs={songs}/>
+            <RenderTracklist songs={props.songs}/>
         </div>
     );
   };
