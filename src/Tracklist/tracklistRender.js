@@ -4,15 +4,20 @@ const RenderTracklist = (props) => {
 
     
     return(
-       <div>
-        {props.songs.map(item=>(
+    <div>
+        {props.songs && props.songs.map(item=>(
         <div key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.artist}</p>
-            <p>{item.album}</p>
+            <div>
+                <p>{item.name}</p>
+                <p>{item.artist}</p>
+                <p>{item.album}</p>
+            </div>
+            <div>
+                <button onClick={()=>{props.onDelete(item.id)}}>X</button>
+            </div>
         </div>
         ))}
-       </div>
+    </div>
     );
      
 };

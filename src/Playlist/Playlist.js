@@ -11,7 +11,7 @@ const [playlistName, setPlaylistName] = useState("Name your playlist...");
 const handleChange = (({target})=>{setPlaylistName(target.value);});
 
 return(
-    <RenderPlaylist songs={props.songs} onChange={handleChange} playlistName={playlistName}/>
+    <RenderPlaylist songs={props.songs} onChange={handleChange} playlistName={playlistName} onDelete={props.onDelete}/>
 );
 }
 
