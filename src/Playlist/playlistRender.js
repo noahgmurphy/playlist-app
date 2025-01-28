@@ -6,7 +6,7 @@ const renderPlaylist = (props) =>{
         <div>
         <input type="text" onChange={props.onChange} value={props.playlistName}/>
         <h2>{props.playlistName}</h2> 
-        <TrackList songs={props.songs} onDelete={props.onDelete}/>
+        <TrackList songs={props.songs} onDelete={props.onDelete} onSave={props.onSave}/>
     </div>
     );
 };

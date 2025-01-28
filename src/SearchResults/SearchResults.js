@@ -9,19 +9,23 @@ const SearchResults = () => {
           name: "I Fall Apart", 
           artist: "Post Malone",
           album: "Stoney",
-          id: "1"
+          id: "1",
+          uri: "989"
         },
         {
           name: "Call",
           artist: "Lil Mosey",
           album: "Call - Single",
-          id: "2"
+          id: "2",
+          uri: "253"
           
         }
       ]);
 
 
     const [playlist, setPlaylist] = useState([]);
+    const [uriArr, setUriArr] = useState([]);
+
 
 
     
@@ -51,10 +55,23 @@ const SearchResults = () => {
        setPlaylist((prev)=>prev.filter((item)=>item.id!=id));
     };
 
+    const handleSavePlaylist = () =>{
+        let arr = [];
+        for(const songObj of playlist){
+            arr.push(songObj.uri);
+        }
+       
+        setUriArr(arr);
+        setPlaylist([]);
+        
+        
+    };
+
+
     return(
         <div>
             <RenderSearchResults results={searchResults} onClick={handleAdd}/>
-            <Playlist songs={playlist} onDelete={handleDelete}/>
+            <Playlist songs={playlist} onDelete={handleDelete} onSave={handleSavePlaylist}/>
         </div>
     );
 };

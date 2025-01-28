@@ -8,7 +8,7 @@ import RenderTracklist from './tracklistRender';
 
     return(
         <div>
-            <RenderTracklist songs={props.songs} onDelete={props.onDelete}/>
+            <RenderTracklist songs={props.songs} onDelete={props.onDelete} onSave={props.onSave}/>
         </div>
     );
   };

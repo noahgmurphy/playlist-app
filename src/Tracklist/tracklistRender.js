@@ -2,6 +2,13 @@ import React from 'react';
 
 const RenderTracklist = (props) => {
 
+    const RenderSave = () =>{
+        return(
+        <button onClick={props.onSave}>SAVE</button>
+        );
+    }
+
+    
     
     return(
     <div>
@@ -17,6 +24,7 @@ const RenderTracklist = (props) => {
             </div>
         </div>
         ))}
+        {props.songs.length>=1 && <RenderSave/>}
     </div>
     );
      
