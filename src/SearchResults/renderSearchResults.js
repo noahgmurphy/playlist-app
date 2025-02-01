@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const RenderSearchResults = (props) =>{
     
     return(
@@ -17,6 +18,7 @@ const RenderSearchResults = (props) =>{
         </div>
 
         ))}
+        
        </div>
     );
 }
