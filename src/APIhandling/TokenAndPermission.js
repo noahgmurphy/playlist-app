@@ -11,10 +11,14 @@ const TokenAndPermission = () =>{
     //When grantedAccess changes calls startCoundown
     const [grantedAccess, setGrantedAccess] = useState(false);
     useEffect(()=>{
+       
         if(grantedAccess){
         startCountdown(15);
         }
     }, [grantedAccess]);
+    /////////
+    /*WHEN PAGE REFRESH GrantedAcess switches back to false*/
+
     /////////
 
     //When url is changed...calls getAccess token
@@ -58,10 +62,15 @@ const TokenAndPermission = () =>{
     //Starts countdown when grantedAccess is true
     //After 1 hour... removes token from URL and resets grantedAccess to false
     const startCountdown = (durationInSeconds) =>{
-        let timeRemaining = durationInSeconds;
+       
+        let timeRemaining = localStorage.getItem('timeRemaining') || durationInSeconds;
         const intervalId = setInterval(()=>{
         timeRemaining--;
+        localStorage.setItem('timeRemaining', timeRemaining); //STORES TIME IN CASE OF PAGE REFRESH
+        console.log(timeRemaining);
+
             if (timeRemaining<0){
+                localStorage.clear();
                 clearInterval(intervalId);
                 setGrantedAccess(false);
                 setAccessToken(null);
@@ -82,7 +91,7 @@ const TokenAndPermission = () =>{
     return(
         <div>
             {!grantedAccess && <button onClick={getPermissions}>GRANT ACCESS</button>}
-            {grantedAccess && <SearchAndPlaylistContainer/>}
+            {grantedAccess && <SearchAndPlaylistContainer token={accessToken}/>}
             <button onClick={printToken}> PRINT TOKEN</button>
         </div>
     )
