@@ -3,9 +3,7 @@ import TrackList from '../Tracklist/Tracklist';
 
 const renderPlaylist = (props) =>{
     return(
-        <div>
-        <input type="text" onChange={props.onChange} value={props.playlistName}/>
-        <h2>{props.playlistName}</h2> 
+    <div>
         <TrackList songs={props.songs} onDelete={props.onDelete} onSave={props.onSave}/>
     </div>
     );

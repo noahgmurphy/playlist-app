@@ -6,14 +6,17 @@ import RenderPlaylist from './playlistRender';
 const Playlist = (props) =>{
    
 
+/*
 const [playlistName, setPlaylistName] = useState("Name your playlist...");
 
-const handleChange = (({target})=>{setPlaylistName(target.value);});
+
+const handleChangeName = (({target})=>{setPlaylistName(target.value);});
+*/
 
 
 
 return(
-    <RenderPlaylist songs={props.songs} onChange={handleChange} playlistName={playlistName} onDelete={props.onDelete} onSave={props.onSave}/>
+    <RenderPlaylist songs={props.songs} onDelete={props.onDelete} onSave={props.onSave}/>
 );
 }
 

@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import SearchResults from './SearchResults/SearchResults.js';
 import Playlist from './Playlist/Playlist.js';
+import SearchBar from './SearchBar/SearchBar.js';
 
-const SearchAndPlaylistContainer = () =>{
+const SearchAndPlaylistContainer = (props) =>{
 
     const [searchResults, setSearchResults] = useState([
         { 
@@ -22,8 +23,11 @@ const SearchAndPlaylistContainer = () =>{
         }
     ]);
 ////
+    const [playlistName, setPlaylistName] = useState("Name your playlist...");
     const [playlist, setPlaylist] = useState([]);
     const [uriArr, setUriArr] = useState([]);
+////
+const handleChangeName = (({target})=>{setPlaylistName(target.value);});
 ////
 
     const handleAdd = (item, id) =>{
@@ -52,13 +56,82 @@ const SearchAndPlaylistContainer = () =>{
         setPlaylist((prev)=>prev.filter((item)=>item.id!=id));
     };
 ////
-    const handleSavePlaylist = () =>{
+    const handleSavePlaylist = async() =>{
+        //GETS ARRAY OF SONG id's
         let arr = [];
+        let idArr = [];
+        let userId = "";
+        let playlistId = "";
         for(const songObj of playlist){
             arr.push(songObj.uri);
         }
-    console.log(arr);
         setUriArr(arr);
+        console.log(uriArr);
+        
+        /*
+        arr.forEach((item)=>{
+            let str = [];
+            str = item.split('track:');
+            idArr.push(str[1]);
+        })
+        */
+
+        //
+        //FETCHES USER ID
+        try{
+            const response = await fetch("https://api.spotify.com/v1/me", {headers:{Authorization: 'Bearer ' + props.token}})
+                .then((response)=> response.json())
+                    .then((data)=> userId=data.id)
+        }
+        catch(error){
+            console.log(error);
+        }
+        //
+        //CREATES SPOTIFY PLAYLIST WITH
+        try{
+            const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`,{
+                method: 'POST',
+                headers:{
+                    Authorization: 'Bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "name": playlistName,
+                    "public": false
+                }),
+            })
+                .then((response)=> response.json())
+                    .then((data)=> playlistId=data.id)
+        }
+        catch(error){
+            console.log(error);
+        }
+        //
+        //ADDS SONGS TO PLAYLIST USING URI'S
+        try{
+            const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,{
+                method: 'POST',
+                headers:{
+                    Authorization: 'Bearer ' + props.token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "uris": arr,
+                    "position": 0  
+                }) 
+            })
+        }
+        catch(error){
+            console.log(error);
+        }
+        
+    /*
+    console.log(userId);
+    console.log(arr);
+    console.log(idArr);
+    */
+
+       /* setUriArr(arr);*/
         setPlaylist([]);
         
         
@@ -67,8 +140,12 @@ const SearchAndPlaylistContainer = () =>{
 
 return(
     <div>
-        <SearchResults searchResults={searchResults} handleAdd={handleAdd}/>
-        <Playlist songs={playlist} onDelete={handleDelete} onSave={handleSavePlaylist}/>
+        <SearchBar token={props.token} handleAdd={handleAdd}/>
+        <div>
+            <input type="text" onChange={handleChangeName} value={props.playlistName}/>
+            <h2>{playlistName}</h2>
+            <Playlist songs={playlist} onDelete={handleDelete} onSave={handleSavePlaylist} playlistName={playlistName}/>
+        </div>
     </div>
 )
 

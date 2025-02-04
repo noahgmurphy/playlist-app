@@ -13,7 +13,7 @@ const TokenAndPermission = () =>{
     useEffect(()=>{
        
         if(grantedAccess){
-        startCountdown(15);
+        startCountdown(3600);
         }
     }, [grantedAccess]);
     /////////
@@ -31,7 +31,7 @@ const TokenAndPermission = () =>{
     const getPermissions = () => {
         var client_id = 'be3f335a11b849da9e8f37de0c9fa129';
         var redirect_uri = 'http://localhost:3000';
-        var scope = 'user-read-private user-read-email';
+        var scope = 'user-read-private user-read-email playlist-modify-private playlist-modify-public';
 
         var url = 'https://accounts.spotify.com/authorize';
         url += '?response_type=token';
@@ -67,7 +67,7 @@ const TokenAndPermission = () =>{
         const intervalId = setInterval(()=>{
         timeRemaining--;
         localStorage.setItem('timeRemaining', timeRemaining); //STORES TIME IN CASE OF PAGE REFRESH
-        console.log(timeRemaining);
+        /*console.log(timeRemaining);*/
 
             if (timeRemaining<0){
                 localStorage.clear();
