@@ -1,0 +1,24 @@
+.container{
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    width: 90%;
+}
+
+.button{
+  margin-left: auto; 
+  
+}
+
+.resulttext{
+    text-align: left;
+}
+
+.title{
+  margin: 5px;
+}
+
+.description{
+  margin: 5px;
+  font-size: 12px;
+}

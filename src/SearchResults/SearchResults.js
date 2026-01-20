@@ -3,6 +3,7 @@ import RenderSearchResults from './renderSearchResults';
 import Playlist from '../Playlist/Playlist.js';
 import { useLocation } from 'react-router-dom';
 
+
 const SearchResults = (props) => {
  
  /*   const [searchResults, setSearchResults] = useState([

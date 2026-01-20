@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import SearchResults from '../SearchResults/SearchResults.js';
+import styles from '../SearchAndPlaylistContainer.module.css'
 
 
 /*https://api.spotify.com/v1/search?q=track%3Astay&type=track&limit=1 */
 const SearchBar = (props) =>{
-    const resultsArr = [];
+   /*const resultsArr = [];
     const [searchResults, setSearchResults] = useState([]);
     const token = props.token;
     let endpoint = 'https://api.spotify.com/v1/search';
@@ -30,7 +31,7 @@ const SearchBar = (props) =>{
                      uri: item.uri   
                     });
                 } 
-                /*
+                
                 console.log(data.tracks.items[0]);
                 console.log(data.tracks.items[0].album.name);
                 console.log(data.tracks.items[0].artists[0].name);
@@ -38,7 +39,7 @@ const SearchBar = (props) =>{
                 console.log(data.tracks.items[0].id);
                 console.log(data.tracks.items[0].uri);
                 console.log(resultsArr);
-                */
+                
                 setSearchResults(resultsArr);
             })
 
@@ -48,14 +49,15 @@ const SearchBar = (props) =>{
         }
         
     }
-
+    
+*/
 
     return(
         <div>
-            
-                <input type="text" id="search_input"></input>
-                <button onClick={handleSearch}>SEARCH</button>
-                <SearchResults searchResults={searchResults} handleAdd={props.handleAdd}/>
+            <div className={styles.child}>
+                <input className={styles.searchinput} type="text" id="search_input"></input>
+                <button className={styles.searchbutton} onClick={props.handleSearch}>SEARCH</button>
+            </div>
             
         </div>
     );

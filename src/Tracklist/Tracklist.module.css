@@ -1,0 +1,38 @@
+.container{
+    display: inline-flex;
+    align-items: center;
+    width: 90%;
+    border-bottom: 1px solid black;
+    
+}
+
+.button{
+  margin-left: auto; 
+  
+}
+
+.resulttext{
+    text-align: left;
+}
+
+.title{
+    margin: 5px;
+}
+
+.description{
+    margin: 5px;
+    font-size: 12px;
+}
+
+.savebutton{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 30px;
+    border-radius: 30px;
+    border: none;
+}
+
+.savebuttoncontainer{
+    padding: 20px;
+}

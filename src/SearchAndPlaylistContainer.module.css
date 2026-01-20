@@ -1,0 +1,95 @@
+.container{
+background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_1920.jpg)
+}
+
+
+.searchbar{
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    vertical-align: center;
+    position: relative;
+}
+
+.searchinput{
+    border-radius: 30px;
+    height: 30px;
+    width: 250px;
+    background-color: lightgrey;
+    font-size: 25px;
+    text-align: center;
+}
+
+.searchbutton{
+    width: 100px;
+    height: 20px;
+    border-radius: 30px;
+    border: 0;
+
+}
+.child{
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.search{
+    display: inline-block; 
+   
+    width: 40%;
+    height: 1000px;
+    vertical-align: top;
+    margin-right: 50px;
+    background-color: rgba(211, 211, 211, .95);
+
+}
+
+.playlist{
+    display: inline-block;
+    width: 40%;
+    height: 1000px;
+    vertical-align: top;
+    background-color: rgba(81, 152, 251, .95);
+}
+
+.namecontainer{
+    border-bottom: 1px solid black;
+    width: 90%;
+    margin: auto;
+    height: 50px;
+    position: relative;
+}
+.playlistname{
+    float: left;
+    height: 50%;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 24px;
+    vertical-align: bottom;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    
+}
+
+.resultstitle{
+    float: left;
+    height: 50%;
+    font-size: 24px;
+    margin-bottom: 0px;
+    padding:0px;
+  
+      
+}
+
+.resultstitlecontainer{
+    border-bottom: 1px solid black;
+    
+    width: 90%;
+    margin: auto;
+    height: 50px;
+    
+}
