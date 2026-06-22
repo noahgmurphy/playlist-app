@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import SearchResults from '../SearchResults/SearchResults.js';
 import SearchAndPlaylistContainer from '../SearchAndPlaylistContainer.js';
 import styles from './TokenAndPermission.module.css';
-
+import { redirectForPermission } from '../utils.js';
 const TokenAndPermission = () =>{
     
     const [accessToken, setAccessToken] = useState();
@@ -74,15 +74,13 @@ const TokenAndPermission = () =>{
             client_id: 'be3f335a11b849da9e8f37de0c9fa129',
             grant_type: 'authorization_code',
             code,
-            redirect_uri: 'https://192.168.1.137:3000',
+            redirect_uri: 'https://spotify-playlist-creator-by-noahm.netlify.app',
             code_verifier: codeVerifier,
             }),
         }
         const body = await fetch(url, payload);
         const response = await body.json();
-        console.log(response);
         localStorage.setItem('access_token', response.access_token);
-        console.log(response.access_token)
         if(response.access_token){ 
             localStorage.setItem('grantedAccess', true)                         
             setAccessToken(response.access_token);  
@@ -96,7 +94,7 @@ const TokenAndPermission = () =>{
         const hashed = await sha256(codeVerifier)
         const codeChallenge = base64encode(hashed);
         const clientId = 'be3f335a11b849da9e8f37de0c9fa129';
-        const redirectUri = 'https://192.168.1.137:3000';
+        const redirectUri = 'https://spotify-playlist-creator-by-noahm.netlify.app';
         const scope = 'user-read-private user-read-email playlist-modify-private playlist-modify-public';
         const authUrl = new URL("https://accounts.spotify.com/authorize")
         window.localStorage.setItem('code_verifier', codeVerifier);
@@ -109,7 +107,7 @@ const TokenAndPermission = () =>{
             redirect_uri: redirectUri,
         }
         authUrl.search = new URLSearchParams(params).toString();
-        window.location.href = authUrl.toString();
+        redirectForPermission(authUrl.toString())
     }
     //COUNTDOWN FUNCTION
     
@@ -119,28 +117,21 @@ const TokenAndPermission = () =>{
         const intervalId = setInterval(()=>{
         timeRemaining--;
         localStorage.setItem('timeRemaining', timeRemaining); //STORES TIME IN CASE OF PAGE REFRESH
-        /*console.log(timeRemaining);*/
         if (timeRemaining<0){
             localStorage.clear();
             clearInterval(intervalId);
             setGrantedAccess(false);
             setAccessToken(null);
-            console.log("COUNTDOWN FINISHED");
             }
         }, 1000)
     };
-
-    const printToken = () =>{
-        console.log(accessToken); 
-        console.log(grantedAccess);
-    }
 
     return(
         <div>
             {!grantedAccess && 
             <div className={styles.permissioncontainer}>
                 <h2>Do you want to allow this app to access your spotify account?</h2>
-                <button onClick={getPermissions}>GRANT ACCESS</button>
+                <button data-testid="permissionButton" onClick={getPermissions}>GRANT ACCESS</button>
             </div>
             }
             {grantedAccess && <SearchAndPlaylistContainer token={accessToken}/>}

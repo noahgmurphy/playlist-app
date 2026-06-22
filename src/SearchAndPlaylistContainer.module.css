@@ -1,10 +1,10 @@
 .container{
-background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_1920.jpg)
+background-color: #6d7d8a;
+
 }
 
-
 .searchbar{
-    width: 600px;
+    width: 50%;
     height: 400px;
     margin: auto;
     vertical-align: center;
@@ -25,24 +25,25 @@ background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_
     height: 20px;
     border-radius: 30px;
     border: 0;
-
+    display: block;
+    margin: auto;
+    margin-top: 3%;
 }
+
 .child{
-    
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 .search{
     display: inline-block; 
-   
     width: 40%;
     height: 1000px;
     vertical-align: top;
     margin-right: 50px;
     background-color: rgba(211, 211, 211, .95);
-
 }
 
 .playlist{
@@ -50,7 +51,7 @@ background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_
     width: 40%;
     height: 1000px;
     vertical-align: top;
-    background-color: rgba(81, 152, 251, .95);
+    background-color: rgba(211, 211, 211, .95);
 }
 
 .namecontainer{
@@ -60,8 +61,10 @@ background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_
     height: 50px;
     position: relative;
 }
+
 .playlistname{
     float: left;
+    width: 90px;
     height: 50%;
     background-color: transparent;
     border: none;
@@ -71,8 +74,6 @@ background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_
     position: absolute;
     bottom: 0;
     left: 0;
-    
-    
 }
 
 .resultstitle{
@@ -81,15 +82,11 @@ background-image: url(/Users/noah/Desktop/SpotifyPlaylist/jammming/blue-3015021_
     font-size: 24px;
     margin-bottom: 0px;
     padding:0px;
-  
-      
 }
 
 .resultstitlecontainer{
     border-bottom: 1px solid black;
-    
     width: 90%;
     margin: auto;
     height: 50px;
-    
 }
