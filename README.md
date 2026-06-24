@@ -10,7 +10,7 @@ Jammming is a Spotify playlist creator that uses the Spotify OAuth flow to conne
 
 Run this app live
 -------------------
-
+[Spotify Playlist Creator](https://spotify-playlist-creator-by-noahm.netlify.app/)
 
 Run Locally
 -------------------
